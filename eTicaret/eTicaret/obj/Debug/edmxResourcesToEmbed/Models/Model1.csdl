@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="eTicaretDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AktifUrunler">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="agirlik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="aktif" Type="Boolean" />
+    <Property Name="kategori" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="anaKategoriId" Type="Int32" />
+    <Property Name="altKategoriAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="altKategoriId" Type="Int32" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="boyX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="boyY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="boyZ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="desi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="durum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="garantiSure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GarantiVerenFirma" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Iskonto" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="KDVOran" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="KDVli" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="KDVsiz" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="KategoriBilgisiGuncelle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mevcut" Type="Boolean" />
+    <Property Name="Miktar" Type="Int32" />
+    <Property Name="ShopId" Type="Int32" />
+    <Property Name="Tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TedarikciAltKategoriAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TedarikciAltKategoriId" Type="Int32" />
+    <Property Name="TedarikciSanalKategoriId" Type="Int32" />
+    <Property Name="UrunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrunId" Type="Int32" />
+    <Property Name="UzunAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrunResimleri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="upTime" Type="DateTime" Precision="3" />
+    <Property Name="adurum" Type="Boolean" />
+    <Property Name="YeniKategoriId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CicekSepeti_AktifUrunler">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itarih" Type="DateTime" Precision="3" />
+    <Property Name="silme" Type="Boolean" />
+    <Property Name="ayarAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ayar" Type="Int32" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="kargo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cinsiyet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="listeFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="satisFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="kategori" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="stok" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="stokKodu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="baslik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="kdv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="durum" Type="Boolean" />
+    <Property Name="upTarih" Type="DateTime" Precision="3" />
+    <Property Name="upFiyatTarih" Type="DateTime" Precision="3" />
+    <Property Name="batchId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="panoHas" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="ePtt_Urunler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="agirlik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="aktif" Type="Boolean" />
+    <Property Name="kategori" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="anaKategoriId" Type="Int32" />
+    <Property Name="altKategoriAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="altKategoriId" Type="Int32" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="boyX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="boyY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="boyZ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="desi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="durum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="garantiSure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GarantiVerenFirma" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Iskonto" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="KDVOran" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="KDVli" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="KDVsiz" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="KategoriBilgisiGuncelle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mevcut" Type="Boolean" />
+    <Property Name="Miktar" Type="Int32" />
+    <Property Name="ShopId" Type="Int32" />
+    <Property Name="Tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TedarikciAltKategoriAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TedarikciAltKategoriId" Type="Int32" />
+    <Property Name="TedarikciSanalKategoriId" Type="Int32" />
+    <Property Name="UrunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrunId" Type="Int32" />
+    <Property Name="UzunAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrunResimleri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="upTime" Type="DateTime" Precision="3" />
+    <Property Name="adurum" Type="Boolean" />
+    <Property Name="YeniKategoriId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="upFiyatTarih" Type="DateTime" Precision="3" />
+    <Property Name="panoHas" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="eTicaretFirma">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="magazaID" Type="Int32" />
+    <Property Name="magazaAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="hasFiatYuzde" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="HepsiBurada">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itarih" Type="DateTime" Precision="3" />
+    <Property Name="silme" Type="Boolean" />
+    <Property Name="ayarAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ayar" Type="Int32" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="kargo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cinsiyet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="listeFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="satisFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="kategori" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="stok" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="stokKodu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="baslik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="categoryId" Type="Int64" />
+    <Property Name="HepsiburadaSku" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="kdv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="durum" Type="Boolean" />
+    <Property Name="upTarih" Type="DateTime" Precision="3" />
+    <Property Name="upFiyatTarih" Type="DateTime" Precision="3" />
+    <Property Name="panoHas" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="int_satis">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ktarih" Type="DateTime" Precision="3" />
+    <Property Name="firmakod" Type="Int32" />
+    <Property Name="sipID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sipTarih" Type="DateTime" Precision="3" />
+    <Property Name="maliyetHAS" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="iscMaliyetTL" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="panoHas" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="iscHAS" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="urun" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="siparisno" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="n11_Urunler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ktarih" Type="DateTime" Precision="3" />
+    <Property Name="durum" Type="Boolean" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ayar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="urunadi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gram" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="n11Id" Type="Int64" />
+    <Property Name="productSellerCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="subtitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="attribute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idx" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="currencyType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image_order" Type="Int32" />
+    <Property Name="saleStartDate" Type="DateTime" Precision="3" />
+    <Property Name="saleEndDate" Type="DateTime" Precision="3" />
+    <Property Name="productionDate" Type="DateTime" Precision="3" />
+    <Property Name="expirationDate" Type="DateTime" Precision="3" />
+    <Property Name="productCondition" Type="Int32" />
+    <Property Name="preparingDay" Type="Int32" />
+    <Property Name="discount" Type="Int32" />
+    <Property Name="shipmentTemplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="sellerStockCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="attribute_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="attribute_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="optionPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="bundle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="mpn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gtin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="specialProductInf_key" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="specialProductInf_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="upFiyatTarih" Type="DateTime" Precision="3" />
+    <Property Name="panoHas" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Sheet">
+    <Key>
+      <PropertyRef Name="SiraNo" />
+    </Key>
+    <Property Name="SiraNo" Type="Int32" Nullable="false" />
+    <Property Name="SiparisID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SendOK" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Sheet2">
+    <Key>
+      <PropertyRef Name="SiraNo" />
+    </Key>
+    <Property Name="SiraNo" Type="Int32" Nullable="false" />
+    <Property Name="SiparisID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SendOK" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SM_Urunler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="marka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="stok" Type="Int32" />
+    <Property Name="desi" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="kdv" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="maliyet" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="sonFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="durum" Type="Boolean" />
+    <Property Name="upFiyatTarih" Type="DateTime" Precision="3" />
+    <Property Name="panoHas" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Trend_AktifUrunler">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itarih" Type="DateTime" Precision="3" />
+    <Property Name="silme" Type="Boolean" />
+    <Property Name="ayarAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ayar" Type="Int32" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="kargo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cinsiyet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="listeFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="satisFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="kategori" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="stok" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="stokKodu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="baslik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="kdv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="durum" Type="Boolean" />
+    <Property Name="upTarih" Type="DateTime" Precision="3" />
+    <Property Name="upFiyatTarih" Type="DateTime" Precision="3" />
+    <Property Name="panoHas" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="UrunBarkod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="durum" Type="Boolean" />
+    <Property Name="ayarAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ayar" Type="Int32" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="urunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gram" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="adet" Type="Int32" />
+    <Property Name="fiyatAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="anagrup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="tezgahgrup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gamiktar" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UrunBilgi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="magazaId" Type="Int32" />
+    <Property Name="magazaAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ayarAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ayar" Type="Int32" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="urunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gram" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="milyem" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="durum" Type="Boolean" />
+    <Property Name="adet" Type="Int32" />
+    <Property Name="komisyon" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="fiyatAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="anagrup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="tezgahgrup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gamiktar" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="yuzde" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="gun" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ayarAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ayar" Type="Int32" />
+    <Property Name="urunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="resim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="milyem" Type="Int32" />
+    <Property Name="durum" Type="Boolean" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="marka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="n11Gram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="n11GramId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="adet" Type="Int32" />
+    <Property Name="fiyatAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="anagrup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="tezgahgrup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gamiktar" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="komisyon" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="vadeFark">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gun" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="yuzde" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="ziynetUrunKombin">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="barkod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AnaGrup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TezgahGrup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Stokkodu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Miktar" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityContainer Name="eTicaretDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AktifUrunlers" EntityType="Self.AktifUrunler" />
+    <EntitySet Name="CicekSepeti_AktifUrunler" EntityType="Self.CicekSepeti_AktifUrunler" />
+    <EntitySet Name="ePtt_Urunler" EntityType="Self.ePtt_Urunler" />
+    <EntitySet Name="eTicaretFirmas" EntityType="Self.eTicaretFirma" />
+    <EntitySet Name="HepsiBuradas" EntityType="Self.HepsiBurada" />
+    <EntitySet Name="int_satis" EntityType="Self.int_satis" />
+    <EntitySet Name="n11_Urunler" EntityType="Self.n11_Urunler" />
+    <EntitySet Name="Sheets" EntityType="Self.Sheet" />
+    <EntitySet Name="Sheet2" EntityType="Self.Sheet2" />
+    <EntitySet Name="SM_Urunler" EntityType="Self.SM_Urunler" />
+    <EntitySet Name="Trend_AktifUrunler" EntityType="Self.Trend_AktifUrunler" />
+    <EntitySet Name="UrunBarkods" EntityType="Self.UrunBarkod" />
+    <EntitySet Name="UrunBilgis" EntityType="Self.UrunBilgi" />
+    <EntitySet Name="Urunlers" EntityType="Self.Urunler" />
+    <EntitySet Name="vadeFarks" EntityType="Self.vadeFark" />
+    <EntitySet Name="ziynetUrunKombins" EntityType="Self.ziynetUrunKombin" />
+    <EntitySet Name="Kullanicis" EntityType="eTicaretDbModel.Kullanici" />
+  </EntityContainer>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="K_ID" />
+    </Key>
+    <Property Name="K_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullaniciPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullaniciAdiSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullaniciEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kullaniciResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="kullaniciUnvan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

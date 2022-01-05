@@ -1,0 +1,335 @@
+﻿
+
+
+
+
+@model Mvc.Models.mvcSmModel
+
+
+@{
+    ViewBag.Title = "SM_UrunlerDetails";
+    var guncelKdv = Model.sonFiyat * Model.kdv / 100 + Model.sonFiyat;
+}
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+    <div class="row ">
+        <div class="col-md-3">
+            <h5>
+                <a href="/urunler">
+                    <span class="badge rounded-pill bg-secondary">< Önceki sayfaya dön</span>
+                </a>
+            </h5>
+        </div>
+        <div class="col-md-9">
+
+        </div>
+
+    </div>
+        <hr />
+        <header style="width:100%" class="pb-5">
+            <span class="badge rounded-pill bg-light-primary text-dark float-left">
+                Barkod :
+                @Html.DisplayFor(model => model.barkod, new { htmlAttributes = new { @class = "form-control" } })
+                /
+                İlan Tarihi : @Html.DisplayFor(model => model.upFiyatTarih, new { htmlAttributes = new { @class = "form-control" } })
+            </span>
+
+        </header>
+
+        @Html.HiddenFor(model => model.Id)
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+
+
+
+
+            <div class="row" id="goster">
+                <div class="col-xl-12">
+                    <!--begin::Engage Widget 14-->
+                    <div class="card card-custom wave wave-animate wave-success mb-8 mb-lg-0 card-stretch gutter-b">
+                        <div class="card-body p-15 pb-20">
+                            <div class="row mb-17">
+                                <div class="col-xxl-5 mb-11 mb-xxl-0">
+                                    <!--begin::Image-->
+                                    <div class="card card-custom card-stretch">
+                                        <div class="card-body p-0 rounded px-10 py-15 d-flex align-items-center justify-content-center " style="background-color: #fff;">
+                                            @if (Model.resim == null || Model.resim == "")
+                                            {
+
+                                                <img src="~/assets/img/gorselYok.png" class="mw-100 w-200px" style="transform: scale(1.3);">
+                                            }
+                                            else
+                                            {
+
+                                                <img src="@Html.DisplayFor(model => model.resim)" class="mw-100 w-200px" style="transform: scale(1.3);">
+                                            }
+                                        </div>
+                                    </div>
+                                    <p hidden>@Html.DisplayFor(model => model.resim)</p>
+                                    <!--end::Image-->
+                                </div>
+                                <div class="col-xxl-7 pl-xxl-11">
+                                    <h2 class="font-weight-bolder text-dark mb-7" style="font-size: 32px;">  @Html.DisplayFor(model => model.urunAdi)</h2>
+                                    <h4>@Html.DisplayFor(model => model.marka)</h4>
+                                    <div class="font-size-h2 mb-7 text-dark-50">
+
+                                        <span class="text-info font-weight-boldest ml-2">
+                                            @Html.DisplayFor(sum => guncelKdv) ₺ <br />
+                                            <span class="label label-inline label-md label-info">PanoHas :@Html.DisplayFor(model => model.panoHas)₺</span>
+                                            <span class="label label-inline label-md label-info">Milyem :@Html.DisplayFor(model => model.milyem)₺</span>
+                                            <span class="label label-inline label-md label-info">Komisyon :@Html.DisplayFor(model => model.komisyon)₺</span>
+                                            <span class="label label-inline label-md label-info">Gün :@Html.DisplayFor(model => model.gun)₺</span>
+                                            <span class="label label-inline label-md label-info">Gram :@Html.DisplayFor(model => model.gram)₺</span>
+                                            <span class="label label-inline label-md label-info">Yüzde :@Html.DisplayFor(model => model.yuzde)%</span>
+                                        </span>
+                                    </div>
+                                    <div class="line-height-xl">
+
+                                        @*   @Html.Raw(Model.aciklama)*@
+                                        @Html.Raw(Model.aciklama)
+
+                                    </div>
+                                    @*<button type="button" class="btn btn-light-primary font-weight-bold" onclick="window.print();">Ürün Detay İndir</button>*@
+                                </div>
+                            </div>
+                            <div class="row mb-12">
+                                <!--begin::Info-->
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Kdv</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg smInput">@Html.DisplayFor(model => model.kdv, new { @class = "smInput" })</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Model</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.model)</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+
+                                        <span class="text-dark font-weight-bold mb-4">Maliyet</span>
+                                        <div class="input-group">
+
+                                            <div class="input-group-prepend">
+                                                <span class="" style="color:#B5B5C3">₺</span>
+                                            </div>
+                                            <span class="text-muted font-weight-bolder font-size-lg">  @Html.DisplayFor(model => model.maliyet)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Stok</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.adet)</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Desi</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.desi)</span>
+                                    </div>
+                                </div>
+
+
+                                @*<div class="col-6 col-md-4">
+                                        <div class="mb-8 d-flex flex-column">
+                                            <span class="text-dark font-weight-bold mb-4">Sale Start Date</span>
+                                            <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.saleStartDate)</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <div class="mb-8 d-flex flex-column">
+                                            <span class="text-dark font-weight-bold mb-4">Sale End Date</span>
+                                            <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.saleEndDate)</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <div class="mb-8 d-flex flex-column">
+                                            <span class="text-dark font-weight-bold mb-4">N11 ID</span>
+                                            <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.n11Id)</span>
+                                        </div>
+                                    </div>*@
+                                <!--end::Info-->
+                            </div>
+
+                        </div>
+                    </div>
+
+                    @*<div class="d-flex">
+
+                            <p class="alert text-center alert-primary float-right font-weight-bolder w-100 px-8 font-size-sm">
+                                Son Güncelleme Tarihi : @Html.DisplayFor(model => model.ktarih)
+                            </p>
+                        </div>*@
+                    <!--end::Engage Widget 14-->
+                </div>
+            </div>
+
+
+        </div>
+        <p hidden>
+            @Html.EditorFor(model => model.aciklama)
+            @Html.EditorFor(model => model.resim)
+            @Html.EditorFor(model => model.urunAdi)
+            @Html.EditorFor(model => model.sonFiyat)
+            @Html.EditorFor(model => model.barkod)
+            @Html.EditorFor(model => model.upFiyatTarih)
+            @Html.EditorFor(model => model.durum)
+        </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+</div>
+
+<style>
+
+    #btnDuzenle {
+        position: absolute;
+        top: 0;
+        margin-top:14px;
+        right: 0;
+        margin-right:14px;
+    }
+</style>
+
+<script>
+
+
+    //fetch('http://localhost:44308/api/urunbilgi')
+    //    .then(resp => res.json())
+    //    .then(response => {
+    //        console.log(response)
+    //    })
+    //    .catch(err => {
+    //        console.log(err.message)
+    //    })
+</script>
+
+<div class="modal fade" id="SM_UrunlerDetailDuzenle">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title center-block" id="modalTitle">SM Ürün Düzenle</h3>
+            </div>
+            <div class="modal-body">
+
+                <form method="post">
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label class="text-dark-50">Ürün Adı</label>
+                                @Html.EditorFor(model => model.urunAdi, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Marka</label>
+                                @Html.EditorFor(model => model.marka, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Barkod</label>
+                                @Html.EditorFor(model => model.barkod, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-1">
+                                <label class="text-dark-50">Stok</label>
+                                @Html.EditorFor(model => model.adet, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="text-dark-50">Açıklama</label>
+                                @Html.TextAreaFor(model => model.aciklama, new { @class = "form-control", @style = "height:150px" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Resim</label>
+                                @Html.EditorFor(model => model.resim, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Desi</label>
+                                @Html.EditorFor(model => model.desi, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Kdv</label>
+                                @Html.EditorFor(model => model.kdv, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Model</label>
+                                @Html.EditorFor(model => model.model, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Maliyet</label>
+                                @Html.EditorFor(model => model.maliyet, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Son Fiyat</label>
+                                @Html.EditorFor(model => model.sonFiyat, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Durum</label>
+                                @Html.EditorFor(model => model.durum, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Up Fiyat Tarih</label>
+                                @Html.EditorFor(model => model.upFiyatTarih, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Milyem</label>
+                                @Html.EditorFor(model => model.milyem, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Komisyon</label>
+                                @Html.EditorFor(model => model.komisyon, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-info" data-dismiss="modal">İptal</a>
+
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+Kullanıcı sayfası eksik olduğu için ilk çalıştırmada bunun hatasını verecektir.
+ETicaretDb > Tables > Kullanici
+K_ID,
+kullaniciAdi,
+kullaniciPassword,
+kullaniciAdiSoyadi,
+kullaniciEmail,
+kullaniciResim,
+kullaniciUnvan

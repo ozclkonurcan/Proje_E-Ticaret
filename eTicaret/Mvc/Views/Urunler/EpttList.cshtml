@@ -1,0 +1,852 @@
+﻿@model IEnumerable<Mvc.Models.mvcEpttModel>
+
+@{
+    ViewBag.Title = "EpttList";
+}
+
+<style>
+    #headerTitle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 50px;
+        background-color: #ad9c65;
+        color: #fff;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    .tableSearchHeader {
+        position: relative;
+    }
+
+    .tableSearch {
+        display: flex;
+        justify-content: end;
+    }
+
+    .tablePageNumber {
+        display: flex;
+        justify-content: start;
+    }
+
+    .dataTables_wrapper {
+    }
+
+        .dataTables_wrapper .dataTables_filter {
+        }
+
+
+        .dataTables_wrapper .dataTables_length {
+        }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 500px;
+        height: 45px;
+    }
+
+    #epttTable_length select {
+        height: 45px;
+    }
+</style>
+<div class="w-100 d-flex justify-content-center">
+    <span id="headerTitle" class="label p-7 font-weight-bold label-xl  label-inline mr-2">E-PTT</span>
+</div>
+@*<a href="/urunler/EpttAddOrEdit" class="btn btn-light-primary pulse pulse-primary mr-2 float-right font-weight-bold mr-2">
+
+        <i class="fa fa-plus"></i>
+
+        Yeni Ürün Ekle
+    </a>*@
+
+<a data-toggle="modal" data-target="#EpttAddInfo" class="btn btn-light-success pulse pulse-success mr-2 float-right font-weight-bold mr-2">
+
+    <i class="fa fa-plus"></i>
+
+    Yeni Ürün Ekle
+</a>
+
+<!--SMurunlerRemove Btn-->
+<div class="modal fade" id="EpttRemoveInfo">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">SM Urunler Remove</h2>
+            </div>
+            <div class="modal-body">
+
+                <form id="EpttRemoveUrunlerForm">
+                    <label>Silmek İstediğine Eminmisin ?</label>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">İptal</button>
+
+                <input type="submit" value="Sil" id="EpttModalSil" class="btn btn-danger" data-bs-dismiss="modal" />
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--SMurunlerRemove Btn-->
+<table id="epttTable" class="table table-head-bg table-head-borderless table-vertical-center">
+    <thead>
+        <tr>
+            <th hidden>
+                Açıklama
+            </th>
+            <th hidden>
+                Ağırlık
+            </th>
+            <th hidden>
+                Aktif
+            </th>
+            <th hidden>
+                Kategori
+            </th>
+            <th hidden>
+                Alt Kategori Adı
+            </th>
+            <th>
+                Ürün Adı
+            </th>
+            <th hidden>
+                Boy X
+            </th>
+            <th hidden>
+                Boy Y
+            </th>
+            <th hidden>
+                Boy Z
+            </th>
+            <th hidden>
+                Desi
+            </th>
+            <th hidden>
+                Durum
+            </th>
+            <th hidden>
+                Garanti Süresi
+            </th>
+            <th hidden>
+                Garanti Veren Firma
+            </th>
+            <th hidden>
+                İskonto
+            </th>
+            <th hidden>
+                Kdv Oran
+            </th>
+            <th hidden>
+                Kdv li
+            </th>
+            <th hidden>
+                Kdv siz
+            </th>
+            <th hidden>
+                Kategori Bilgisi Güncelle
+            </th>
+            <th hidden>
+                Mevcut
+            </th>
+            <th hidden>
+                Tag
+            </th>
+            <th hidden>
+                Tedarikçi Alt Kategori Adı
+            </th>
+            <th hidden>
+                Ürün Adı
+            </th>
+            <th hidden>
+                Uzun Açıklama
+            </th>
+
+            <th hidden>
+                Ürün Resimleri
+            </th>
+            <th>
+                Gün
+            </th>
+            <th>
+                Yüzde
+            </th>
+            <th>
+                Komisyon
+            </th>
+            <th>
+                Stok
+            </th>
+            <th>
+                Gram
+            </th>
+
+            <th>
+                Milyem
+            </th>
+            <th>
+                PanoHas
+            </th>
+            <th>
+                Fiyat
+            </th>
+            <th hidden>
+                Up Time
+            </th>
+            <th hidden>
+                Ad Durum
+            </th>
+            <th hidden>
+                Yeni Kategori ID
+            </th>
+            <th hidden>
+                Up Fiyat Tarih
+            </th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.durum == "1")
+            {
+        <tr>
+            <td hidden>
+                @*@{
+                string parameterValue = item.aciklama.ToString().Substring(8, 40);
+            }*@
+                @Html.DisplayFor(modelItem => item.aciklama)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.agirlik)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.aktif)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.kategori)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.altKategoriAdi)
+            </td>
+            <td class="shorting_1 dtr-control text-left" style="width:200px;">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-50 flex-shrink-0">
+                        @if (item.resim == null || item.resim == "")
+                        {
+                            <div class="symbol-label bgi-size-cover" style="background-image:url('../../assets/img/gorselYok.png')">
+
+                            </div>
+                        }
+                        else
+                        {
+
+                            <div class="symbol-label bgi-size-cover" style="background-image:url(@Html.DisplayFor(modelItem => item.resim))">
+
+                            </div>
+                        }
+                    </div>
+                    <div class="ml-3">
+                        <span class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">
+                            @Html.DisplayFor(modelItem => item.barkod, new { @class = "label-light-success label-inline" })
+                        </span>
+
+                        @Html.DisplayFor(modelItem => item.UrunAdi)
+                    </div>
+                </div>
+
+
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.boyX)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.boyY)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.boyZ)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.desi)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.durum)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.garantiSure)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.GarantiVerenFirma)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.Iskonto)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.KDVOran)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.KDVli)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.KDVsiz)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.KategoriBilgisiGuncelle)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.Mevcut)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.Tag)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.TedarikciAltKategoriAdi)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.UrunAdi)
+            </td>
+            <td hidden>
+
+                @Html.DisplayFor(modelItem => item.aciklama)
+            </td>
+            <td hidden>
+                <img src="@Html.DisplayFor(modelItem => item.resim)" style="width:40px;height:40px" />
+            </td>
+            <td>
+                @if (item.gun == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.gun)
+                }
+            </td>
+            <td>
+                @if (item.yuzde == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.yuzde)
+                }
+            </td>
+            <td>
+                @if (item.komisyon == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.komisyon)
+                }
+            </td>
+            <td>
+                @if (item.adet == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.adet)
+                }
+            </td>
+            <td>
+                @if (item.gram == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.gram)
+                }
+            </td>
+
+            <td>
+                @if (item.milyem == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.milyem)
+                }
+            </td>
+            <td>
+                @if (item.panoHas == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.panoHas)
+                }
+            </td>
+            <td>
+                @if (item.fiyat == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.fiyat)
+                }
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.upTime)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.adurum)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.YeniKategoriId)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.upFiyatTarih)
+            </td>
+            <td style="
+    position:absolute;
+    display:flex;
+    ">
+                @*<a href="@Url.Action("EpttAddOrEdit","urunler",new {id= item.Id })" class="btn btn-sm btn-icon btn-light-primary pulse pulse-primary mr-2">
+                <i class="fa fa-cog"></i>
+                <span class="pulse-ring"></span>
+            </a>*@
+                @*<a href="#" onclick="EpttAddOrEdit(@item.Id)" class="btn btn-sm  btn-icon btn-light-primary pulse pulse-primary mr-2">
+                <i class="fa fa-cog"></i>
+                <span class="pulse-ring"></span>
+            </a>*@
+
+
+                @*@Html.ActionLink("Detay", "CicekSepetiDetay", new { id = item.otosay }, new
+            {
+                @class = "btn btn-info",
+                @data_toggle = "modal",
+                @data_target = "#exampleModalLong"
+            })*@
+
+                <a href="@Url.Action("EpttDetails","urunler",new {id= item.Id })" class="btn btn-sm btn-icon btn-light-info pulse pulse-info mr-2">
+                    <i class="fa fa-info"></i>
+                    <span class="pulse-ring"></span>
+                </a>
+
+
+                @*<a href="@Url.Action("EpttRemove","urunler",new {id= item.Id })" id="EpttRemove" class="btn btn-sm btn-icon btn-light-danger pulse pulse-danger mr-2">
+                <i class="fa fa-trash"></i>
+                <span class="pulse-ring"></span>
+            </a>*@
+                <a id="EpttRemoveInfo" onclick="Rem(@item.Id)" class="btn btn-sm btn-icon btn-light-danger pulse pulse-danger mr-2">
+                    <i class="fa fa-trash"></i>
+                    <span class="pulse-ring"></span>
+                </a>
+
+                @*<a href="#" id="showModal" class="btn btn-danger" onclick="Remove(@item.otosay)">Sil</a>*@
+
+
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+<script>
+
+    var Rem = function (_id) {
+
+
+        Swal.fire({
+            title: 'Uyarı !!!',
+            text: "Silmek istediğine emin misin ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sil',
+            cancelButtonText: 'İptal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Urunler/epttRemove",
+                    data: { id: _id },
+                    success: function (result) {
+                        if (result) {
+                       
+                            $('#EpttRemoveID').val(null);
+                            window.location.href = "/urunler/epttlist";
+
+                        }
+                        else {
+                            alertify.error("Hata oluştu silme işlemi sırasında");
+                        }
+                    }
+                });
+            }
+        })
+
+    };
+
+
+       $(function () {
+        var SuccessMessage = '@TempData["SuccessMessage"]'
+        if (SuccessMessage != '')
+            alertify.success(SuccessMessage);
+    })
+    $(document).ready(function () {
+
+        //Add
+        $("#EpttModal_btnAdd").click(function () {
+            var DataForm = $("#EpttAddForm").serialize();
+            var barkodKont = $("#barkodKontrol").val();
+            if (barkodKont == null || barkodKont == "") {
+
+                toastr.warning("Barkod numarası girmeden ekleme işlemi yapamazsın !!!");
+            } else {
+                $.ajax({
+                    type: "POST",
+                    //url: "/Urunler/EpttDetails",
+                    url:"http://localhost:44308/api/eptt_urunler",
+                    data: DataForm,
+                    success: function () {
+                        toastr.success("Ekleme işlemi gerçekleşti")
+                        window.location.href = "/urunler/epttlist";
+
+                    },
+                    error: function () {
+                        toastr.info("Barkod numarası kullanılmaktadır.");
+                    }
+                });
+            }
+        });
+        $('#epttTable').DataTable({
+
+            "dom": "<'row tableSearchHeader'<'tableSearch col-lg-10 col-md-10 col-xs-12'f><'tablePageNumber col-lg-2 col-md-2 col-xs-12'l>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Arama...",
+                lengthMenu: " _MENU_ ",
+                zeroRecords: "Kayıt bulunamadı",
+                info: "Gösterilen Sayfa : _PAGE_ Sayfalar : _PAGES_",
+                infoEmpty: "Kayıt yok",
+                infoFiltered: "(Toplam _MAX_ kayıttan filtrelendi)"
+            },
+            columnDefs: [{ orderable: false, targets: [14,23, 8,35] }],
+
+        });
+    });
+
+     var EpttAddOrEdit = function (Id) {
+        $('#EpttAddOrEditID').val(Id);
+        var url = '@Url.Action("EpttAddOrEdit", "Urunler")/' + Id;
+            $.get(url, function (data) {
+                $('#myModal').html(data);
+                $('#myModal').modal('show');
+            })
+    }
+
+    //$(document).ready(function () {
+    //    $('#EpttModalSil').click(function () {
+    //        var _id = $('#EpttRemoveID').val();
+
+    //        $.ajax({
+    //            type: "POST",
+    //            url: "/Urunler/epttRemove",
+    //            data: { id: _id },
+    //            success: function (result) {
+    //                if (result) {
+    //                    Swal.fire({
+    //                        title: "Silindi",
+    //                        text: "Dosya başarıyla silindi",
+    //                        icon: "success",
+    //                        buttonsStyling: false,
+    //                        showConfirmButton: false
+    //                    });
+    //                    $('#EpttRemoveInfo').modal('hide');
+    //                    $('#EpttRemoveID').val(null);
+    //                    window.location.href = "/urunler/epttlist";
+
+    //                }
+    //                else {
+    //                    alertify.error("Hata oluştu silme işlemi sırasında");
+    //                }
+    //            }
+    //        });
+    //    });
+    //})
+
+    var Confirm = function (Id) {
+        $('#EpttRemoveID').val(Id);
+        $('#EpttRemoveInfo').modal('show');
+    }
+
+
+</script>
+
+<!--SMurunlerRemove Btn-->
+<!--Update Modal-->
+@*<button type="button" class="btn btn-secondary" id="#">Modal</button>*@
+<div class="modal" id="myModal"> </div>
+<!--Update Modal-->
+<input type="hidden" id="EpttAddOrEditID" />
+
+@*</div>*@
+<!--GET ID-->
+<input type="hidden" id="EpttRemoveID" />
+<!--GET ID-->
+<!-- SM URUNLER Add-->
+<!--BTN-->
+@*<button class="btn btn-light-primary" data-toggle="modal" data-target="#SM_UrunlerAddInfo">Modal add</button>*@
+<!--BTN-->
+<div class="modal fade" id="EpttAddInfo">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title center-block" id="modalTitle">EPTT Ürün Ekle</h3>
+            </div>
+            <div class="modal-body">
+
+                <form id="EpttAddForm" method="post" action="/urunler/EpttDetails">
+                    <div class="form-group">
+                        <div class="row">
+                            @*<div class="col-md-3">
+                                <input name="agirlik" class="form-control" placeholder="Ağırlık" />
+                            </div>*@
+                            <div class="col-md-3">
+                                <select name="aktif" class="form-control">
+                                    <option selected>Aktif İşlem</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input name="kategori" class="form-control" placeholder="Kategori" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="anaKategoriId" class="form-control" placeholder="Ana Kategori ID" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input name="aciklama" class="form-control" placeholder="Açıklama" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="altKategoriAdi" class="form-control" placeholder="Alt Kategori Adı" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="altKategoriId" class="form-control" placeholder="Alt Kategori ID" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="barkod" id="barkodKontrol"  class="form-control" placeholder="Barkod" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="boyX" class="form-control" placeholder="Boy X" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="boyY" class="form-control" placeholder="Boy Y" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="boyZ" class="form-control" placeholder="Boy Z" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="desi" class="form-control" placeholder="Desi" />
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" name="durum">
+                                    <option selected>Durum İşlem</option>
+                                    <option value="1">Aktif</option>
+                                    <option value="2">Pasif</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="garantiSure" class="form-control" placeholder="Garanti Süresi" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="GarantiVerenFirma" class="form-control" placeholder="Garanti Veren Firma" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="Iskonto" class="form-control" placeholder="İskonto" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="KDVOran" class="form-control" placeholder="Kdv Oranı" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="KDVli" class="form-control" placeholder="KDV li" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="KDVsiz" class="form-control" placeholder="KDV siz" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="KategoriBilgisiGuncelle" class="form-control" placeholder="Kategori Bilgisi Güncelle" />
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" name="Mevcut">
+                                    <option selected>Mevcut İşlem</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="adet" class="form-control" placeholder="Adet" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="ShopId" class="form-control" placeholder="Shop ID" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="Tag" class="form-control" placeholder="Tag" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="TedarikciAltKategoriAdi" class="form-control" placeholder="Tedarikçi Alt Kategori Adı" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="TedarikciAltKategoriId" class="form-control" placeholder="Tedarikçi Alt Kategori ID" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="TedarikciSanalKategoriId" class="form-control" placeholder="Tedarikçi Sanal Kategori Id" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="UrunAdi" class="form-control" placeholder="Urun Adı" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="UrunId" class="form-control" placeholder="Urun ID" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+
+                                <select class="form-control" name="adurum">
+                                    <option selected>Adurum İşlem</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="UrunResimleri" class="form-control" placeholder="Garanti Veren Firma" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="fiyat" class="form-control" placeholder="İskonto" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="upTime" class="form-control" placeholder="Kdv Oranı" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input name="UzunAciklama" class="form-control" placeholder="Uzun Açıklama" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="YeniKategoriId" class="form-control" placeholder="Yeni Kategori ID" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="upFiyatTarih" class="form-control" placeholder="Up Fiyat Tarih" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="panoHas" class="form-control" placeholder="PanoHas" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="milyem" class="form-control" placeholder="Milyem" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="gram" class="form-control" placeholder="Gram" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="komisyon" class="form-control" placeholder="Komisyon" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="gun" class="form-control" placeholder="Gün" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="yuzde" class="form-control" placeholder="Yüzde" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-info" data-dismiss="modal">İptal</a>
+
+                <button type="submit" id="EpttModal_btnAdd" class="btn btn-success">Ekle</button>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SM URUNLER Add-->

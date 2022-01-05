@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="eTicaretDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AktifUrunler">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="aciklama" Type="nvarchar(max)" />
+    <Property Name="agirlik" Type="nvarchar(max)" />
+    <Property Name="aktif" Type="bit" />
+    <Property Name="kategori" Type="nvarchar(max)" />
+    <Property Name="anaKategoriId" Type="int" />
+    <Property Name="altKategoriAdi" Type="nvarchar(max)" />
+    <Property Name="altKategoriId" Type="int" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="boyX" Type="nvarchar(max)" />
+    <Property Name="boyY" Type="nvarchar(max)" />
+    <Property Name="boyZ" Type="nvarchar(max)" />
+    <Property Name="desi" Type="nvarchar(max)" />
+    <Property Name="durum" Type="nvarchar(max)" />
+    <Property Name="garantiSure" Type="nvarchar(max)" />
+    <Property Name="GarantiVerenFirma" Type="nvarchar(max)" />
+    <Property Name="Iskonto" Type="money" />
+    <Property Name="KDVOran" Type="money" />
+    <Property Name="KDVli" Type="money" />
+    <Property Name="KDVsiz" Type="money" />
+    <Property Name="KategoriBilgisiGuncelle" Type="nvarchar(max)" />
+    <Property Name="Mevcut" Type="bit" />
+    <Property Name="Miktar" Type="int" />
+    <Property Name="ShopId" Type="int" />
+    <Property Name="Tag" Type="nvarchar(max)" />
+    <Property Name="TedarikciAltKategoriAdi" Type="nvarchar(max)" />
+    <Property Name="TedarikciAltKategoriId" Type="int" />
+    <Property Name="TedarikciSanalKategoriId" Type="int" />
+    <Property Name="UrunAdi" Type="nvarchar(max)" />
+    <Property Name="UrunId" Type="int" />
+    <Property Name="UzunAciklama" Type="nvarchar(max)" />
+    <Property Name="UrunResimleri" Type="nvarchar(max)" />
+    <Property Name="fiyat" Type="money" />
+    <Property Name="upTime" Type="datetime" />
+    <Property Name="adurum" Type="bit" />
+    <Property Name="YeniKategoriId" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="CicekSepeti_AktifUrunler">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="itarih" Type="datetime" />
+    <Property Name="silme" Type="bit" />
+    <Property Name="ayarAdi" Type="nvarchar(max)" />
+    <Property Name="ayar" Type="int" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="brand" Type="nvarchar(max)" />
+    <Property Name="kargo" Type="nvarchar(max)" />
+    <Property Name="aciklama" Type="nvarchar(max)" />
+    <Property Name="cinsiyet" Type="nvarchar(max)" />
+    <Property Name="resim" Type="nvarchar(max)" />
+    <Property Name="listeFiyat" Type="money" />
+    <Property Name="satisFiyat" Type="money" />
+    <Property Name="kategori" Type="nvarchar(max)" />
+    <Property Name="stok" Type="nvarchar(max)" />
+    <Property Name="stokKodu" Type="nvarchar(max)" />
+    <Property Name="baslik" Type="nvarchar(max)" />
+    <Property Name="kdv" Type="nvarchar(max)" />
+    <Property Name="mail" Type="nvarchar(max)" />
+    <Property Name="durum" Type="bit" />
+    <Property Name="upTarih" Type="datetime" />
+    <Property Name="upFiyatTarih" Type="datetime" />
+    <Property Name="batchId" Type="nvarchar" MaxLength="100" />
+    <Property Name="panoHas" Type="money" />
+  </EntityType>
+  <EntityType Name="ePtt_Urunler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="aciklama" Type="nvarchar(max)" />
+    <Property Name="agirlik" Type="nvarchar(max)" />
+    <Property Name="aktif" Type="bit" />
+    <Property Name="kategori" Type="nvarchar(max)" />
+    <Property Name="anaKategoriId" Type="int" />
+    <Property Name="altKategoriAdi" Type="nvarchar(max)" />
+    <Property Name="altKategoriId" Type="int" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="boyX" Type="nvarchar(max)" />
+    <Property Name="boyY" Type="nvarchar(max)" />
+    <Property Name="boyZ" Type="nvarchar(max)" />
+    <Property Name="desi" Type="nvarchar(max)" />
+    <Property Name="durum" Type="nvarchar(max)" />
+    <Property Name="garantiSure" Type="nvarchar(max)" />
+    <Property Name="GarantiVerenFirma" Type="nvarchar(max)" />
+    <Property Name="Iskonto" Type="money" />
+    <Property Name="KDVOran" Type="money" />
+    <Property Name="KDVli" Type="money" />
+    <Property Name="KDVsiz" Type="money" />
+    <Property Name="KategoriBilgisiGuncelle" Type="nvarchar(max)" />
+    <Property Name="Mevcut" Type="bit" />
+    <Property Name="Miktar" Type="int" />
+    <Property Name="ShopId" Type="int" />
+    <Property Name="Tag" Type="nvarchar(max)" />
+    <Property Name="TedarikciAltKategoriAdi" Type="nvarchar(max)" />
+    <Property Name="TedarikciAltKategoriId" Type="int" />
+    <Property Name="TedarikciSanalKategoriId" Type="int" />
+    <Property Name="UrunAdi" Type="nvarchar(max)" />
+    <Property Name="UrunId" Type="int" />
+    <Property Name="UzunAciklama" Type="nvarchar(max)" />
+    <Property Name="UrunResimleri" Type="nvarchar(max)" />
+    <Property Name="fiyat" Type="money" />
+    <Property Name="upTime" Type="datetime" />
+    <Property Name="adurum" Type="bit" />
+    <Property Name="YeniKategoriId" Type="nvarchar(max)" />
+    <Property Name="upFiyatTarih" Type="datetime" />
+    <Property Name="panoHas" Type="money" />
+  </EntityType>
+  <EntityType Name="eTicaretFirma">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="magazaID" Type="int" />
+    <Property Name="magazaAdi" Type="nvarchar(max)" />
+    <Property Name="hasFiatYuzde" Type="money" />
+  </EntityType>
+  <EntityType Name="HepsiBurada">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="itarih" Type="datetime" />
+    <Property Name="silme" Type="bit" />
+    <Property Name="ayarAdi" Type="nvarchar(max)" />
+    <Property Name="ayar" Type="int" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="brand" Type="nvarchar(max)" />
+    <Property Name="kargo" Type="nvarchar(max)" />
+    <Property Name="aciklama" Type="nvarchar(max)" />
+    <Property Name="cinsiyet" Type="nvarchar(max)" />
+    <Property Name="resim" Type="nvarchar(max)" />
+    <Property Name="listeFiyat" Type="money" />
+    <Property Name="satisFiyat" Type="money" />
+    <Property Name="kategori" Type="nvarchar(max)" />
+    <Property Name="stok" Type="nvarchar(max)" />
+    <Property Name="stokKodu" Type="nvarchar(max)" />
+    <Property Name="baslik" Type="nvarchar(max)" />
+    <Property Name="categoryId" Type="bigint" />
+    <Property Name="HepsiburadaSku" Type="nvarchar" MaxLength="20" />
+    <Property Name="kdv" Type="nvarchar(max)" />
+    <Property Name="mail" Type="nvarchar(max)" />
+    <Property Name="durum" Type="bit" />
+    <Property Name="upTarih" Type="datetime" />
+    <Property Name="upFiyatTarih" Type="datetime" />
+    <Property Name="panoHas" Type="money" />
+  </EntityType>
+  <EntityType Name="int_satis">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ktarih" Type="datetime" />
+    <Property Name="firmakod" Type="int" />
+    <Property Name="sipID" Type="nvarchar" MaxLength="50" />
+    <Property Name="sipTarih" Type="datetime" />
+    <Property Name="maliyetHAS" Type="money" />
+    <Property Name="iscMaliyetTL" Type="money" />
+    <Property Name="panoHas" Type="money" />
+    <Property Name="iscHAS" Type="money" />
+    <Property Name="urun" Type="nvarchar" MaxLength="255" />
+    <Property Name="siparisno" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="K_ID" />
+    </Key>
+    <Property Name="K_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="kullaniciPassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="kullaniciAdiSoyadi" Type="nvarchar" MaxLength="50" />
+    <Property Name="kullaniciEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="kullaniciResim" Type="nvarchar(max)" />
+    <Property Name="kullaniciUnvan" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="n11_Urunler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ktarih" Type="datetime" />
+    <Property Name="durum" Type="bit" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="ayar" Type="nvarchar(max)" />
+    <Property Name="urunadi" Type="nvarchar(max)" />
+    <Property Name="gram" Type="money" />
+    <Property Name="n11Id" Type="bigint" />
+    <Property Name="productSellerCode" Type="nvarchar(max)" />
+    <Property Name="title" Type="nvarchar(max)" />
+    <Property Name="subtitle" Type="nvarchar(max)" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="attribute" Type="nvarchar(max)" />
+    <Property Name="idx" Type="nvarchar(max)" />
+    <Property Name="price" Type="money" />
+    <Property Name="currencyType" Type="nvarchar(max)" />
+    <Property Name="image" Type="nvarchar(max)" />
+    <Property Name="image_order" Type="int" />
+    <Property Name="saleStartDate" Type="datetime" />
+    <Property Name="saleEndDate" Type="datetime" />
+    <Property Name="productionDate" Type="datetime" />
+    <Property Name="expirationDate" Type="datetime" />
+    <Property Name="productCondition" Type="int" />
+    <Property Name="preparingDay" Type="int" />
+    <Property Name="discount" Type="int" />
+    <Property Name="shipmentTemplate" Type="nvarchar(max)" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="sellerStockCode" Type="nvarchar(max)" />
+    <Property Name="attribute_name" Type="nvarchar(max)" />
+    <Property Name="attribute_value" Type="nvarchar(max)" />
+    <Property Name="optionPrice" Type="money" />
+    <Property Name="bundle" Type="nvarchar(max)" />
+    <Property Name="mpn" Type="nvarchar(max)" />
+    <Property Name="gtin" Type="nvarchar(max)" />
+    <Property Name="specialProductInf_key" Type="nvarchar(max)" />
+    <Property Name="specialProductInf_value" Type="nvarchar(max)" />
+    <Property Name="upFiyatTarih" Type="datetime" />
+    <Property Name="panoHas" Type="money" />
+  </EntityType>
+  <EntityType Name="Sheet">
+    <Key>
+      <PropertyRef Name="SiraNo" />
+    </Key>
+    <Property Name="SiraNo" Type="int" Nullable="false" />
+    <Property Name="SiparisID" Type="nvarchar" MaxLength="255" />
+    <Property Name="SendOK" Type="int" />
+  </EntityType>
+  <EntityType Name="Sheet2">
+    <Key>
+      <PropertyRef Name="SiraNo" />
+    </Key>
+    <Property Name="SiraNo" Type="int" Nullable="false" />
+    <Property Name="SiparisID" Type="nvarchar" MaxLength="255" />
+    <Property Name="SendOK" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SM_Urunler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="urunAdi" Type="nvarchar(max)" />
+    <Property Name="aciklama" Type="nvarchar(max)" />
+    <Property Name="marka" Type="nvarchar(max)" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="stok" Type="int" />
+    <Property Name="desi" Type="money" />
+    <Property Name="kdv" Type="money" />
+    <Property Name="resim" Type="nvarchar(max)" />
+    <Property Name="model" Type="nvarchar(max)" />
+    <Property Name="maliyet" Type="money" />
+    <Property Name="sonFiyat" Type="money" />
+    <Property Name="durum" Type="bit" />
+    <Property Name="upFiyatTarih" Type="datetime" />
+    <Property Name="panoHas" Type="money" />
+  </EntityType>
+  <EntityType Name="Trend_AktifUrunler">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="itarih" Type="datetime" />
+    <Property Name="silme" Type="bit" />
+    <Property Name="ayarAdi" Type="nvarchar(max)" />
+    <Property Name="ayar" Type="int" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="brand" Type="nvarchar(max)" />
+    <Property Name="kargo" Type="nvarchar(max)" />
+    <Property Name="aciklama" Type="nvarchar(max)" />
+    <Property Name="cinsiyet" Type="nvarchar(max)" />
+    <Property Name="resim" Type="nvarchar(max)" />
+    <Property Name="listeFiyat" Type="money" />
+    <Property Name="satisFiyat" Type="money" />
+    <Property Name="kategori" Type="nvarchar(max)" />
+    <Property Name="stok" Type="nvarchar(max)" />
+    <Property Name="stokKodu" Type="nvarchar(max)" />
+    <Property Name="baslik" Type="nvarchar(max)" />
+    <Property Name="kdv" Type="nvarchar(max)" />
+    <Property Name="mail" Type="nvarchar(max)" />
+    <Property Name="durum" Type="bit" />
+    <Property Name="upTarih" Type="datetime" />
+    <Property Name="upFiyatTarih" Type="datetime" />
+    <Property Name="panoHas" Type="money" />
+  </EntityType>
+  <EntityType Name="UrunBarkod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="durum" Type="bit" />
+    <Property Name="ayarAdi" Type="nvarchar(max)" />
+    <Property Name="ayar" Type="int" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="urunAdi" Type="nvarchar(max)" />
+    <Property Name="gram" Type="money" />
+    <Property Name="adet" Type="int" />
+    <Property Name="fiyatAdi" Type="nvarchar(max)" />
+    <Property Name="anagrup" Type="nvarchar(max)" />
+    <Property Name="tezgahgrup" Type="nvarchar(max)" />
+    <Property Name="gamiktar" Type="money" />
+    <Property Name="resim" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UrunBilgi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="magazaId" Type="int" />
+    <Property Name="magazaAdi" Type="nvarchar(max)" />
+    <Property Name="ayarAdi" Type="nvarchar(max)" />
+    <Property Name="ayar" Type="int" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="urunAdi" Type="nvarchar(max)" />
+    <Property Name="gram" Type="money" />
+    <Property Name="resim" Type="nvarchar(max)" />
+    <Property Name="milyem" Type="money" />
+    <Property Name="durum" Type="bit" />
+    <Property Name="adet" Type="int" />
+    <Property Name="komisyon" Type="money" />
+    <Property Name="fiyatAdi" Type="nvarchar(max)" />
+    <Property Name="anagrup" Type="nvarchar(max)" />
+    <Property Name="tezgahgrup" Type="nvarchar(max)" />
+    <Property Name="gamiktar" Type="money" />
+    <Property Name="yuzde" Type="money" />
+    <Property Name="gun" Type="money" />
+  </EntityType>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ayarAdi" Type="nvarchar(max)" />
+    <Property Name="ayar" Type="int" />
+    <Property Name="urunAdi" Type="nvarchar(max)" />
+    <Property Name="gram" Type="nvarchar(max)" />
+    <Property Name="resim" Type="nvarchar(max)" />
+    <Property Name="milyem" Type="int" />
+    <Property Name="durum" Type="bit" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="marka" Type="nvarchar(max)" />
+    <Property Name="n11Gram" Type="nvarchar(max)" />
+    <Property Name="n11GramId" Type="nvarchar(max)" />
+    <Property Name="adet" Type="int" />
+    <Property Name="fiyatAdi" Type="nvarchar(max)" />
+    <Property Name="anagrup" Type="nvarchar(max)" />
+    <Property Name="tezgahgrup" Type="nvarchar(max)" />
+    <Property Name="gamiktar" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="komisyon" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="vadeFark">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gun" Type="money" />
+    <Property Name="yuzde" Type="money" />
+  </EntityType>
+  <EntityType Name="ziynetUrunKombin">
+    <Key>
+      <PropertyRef Name="otosay" />
+    </Key>
+    <Property Name="otosay" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="barkod" Type="nvarchar(max)" />
+    <Property Name="AnaGrup" Type="nvarchar(max)" />
+    <Property Name="TezgahGrup" Type="nvarchar(max)" />
+    <Property Name="Stokkodu" Type="nvarchar(max)" />
+    <Property Name="Miktar" Type="money" />
+  </EntityType>
+  <EntityContainer Name="eTicaretDbModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AktifUrunler" EntityType="Self.AktifUrunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CicekSepeti_AktifUrunler" EntityType="Self.CicekSepeti_AktifUrunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ePtt_Urunler" EntityType="Self.ePtt_Urunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="eTicaretFirma" EntityType="Self.eTicaretFirma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HepsiBurada" EntityType="Self.HepsiBurada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="int_satis" EntityType="Self.int_satis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="n11_Urunler" EntityType="Self.n11_Urunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sheet" EntityType="Self.Sheet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sheet2" EntityType="Self.Sheet2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SM_Urunler" EntityType="Self.SM_Urunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trend_AktifUrunler" EntityType="Self.Trend_AktifUrunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UrunBarkod" EntityType="Self.UrunBarkod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UrunBilgi" EntityType="Self.UrunBilgi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vadeFark" EntityType="Self.vadeFark" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ziynetUrunKombin" EntityType="Self.ziynetUrunKombin" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

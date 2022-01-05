@@ -1,0 +1,433 @@
+﻿
+
+@model Mvc.Models.mvcHepsiBuradaModel
+
+
+
+
+@{
+    ViewBag.Title = "HepsiBuradaDetails";
+}
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        <div class="row ">
+            <div class="col-md-12" id="btnBarkodLogo">
+                <p class="alert bg-light-info">
+                    @Html.DisplayFor(model => model.barkod, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+            </div>
+            <a href="/urunler/hepsiburadalist" class="btn btn-outline-warning" id="btnGeri">
+                <i class="ki ki-bold-wide-arrow-back"></i>
+                Geri
+            </a>
+            <button type="button" class="btn btn-outline-primary" id="btnDuzenle" data-toggle="modal" data-target="#HepsiburadaDetailGuncelle">
+                <i class="ki ki-gear"></i>
+                Düzenle
+            </button>
+        </div>
+
+
+        @Html.HiddenFor(model => model.otosay)
+      
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group mt-15">
+        
+
+
+
+            @*<div class="row">
+                    <div class="col-md-12 mt-4">
+                        <div class="card card-custom wave wave-animate wave-success mb-8 mb-lg-0" style="height:60vh; max-width: 100%">
+                            <div class="row g-0">
+
+                                <div class="col-md-9">
+                                    <div class="card-body">
+
+
+
+                                        <p class="card-text">
+                                            <ul class="nav nav-light-success nav-pills" id="myTab" role="tablist">
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#kt_tab_pane_4_1">
+                                                        <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
+                                                        <span class="nav-text">Bilgilendirme</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_4_2">
+                                                        <span class="nav-icon"><i class="flaticon2-drop"></i></span>
+                                                        <span class="nav-text">Açıklama</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_4_3">
+                                                        <span class="nav-icon"><i class="flaticon2-drop"></i></span>
+                                                        <span class="nav-text">Uzun Açıklama</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content mt-5" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="kt_tab_pane_4_1" role="tabpanel" aria-labelledby="pills-home-tab">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                        boş1
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="tab-pane fade" id="kt_tab_pane_4_2" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                                    @Html.DisplayFor(model => model.aciklama, new { htmlAttributes = new { @class = "form-control" } })
+
+                                                </div>
+                                                <div class="tab-pane fade" id="kt_tab_pane_4_3" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                                            </div>
+                                        </p>
+                                        <p class="card-text">
+                                            <small class="text-muted">
+                                                Son Güncelleme Tarihi @Html.DisplayFor(model => model.upTarih, new { htmlAttributes = new { @class = "form-control" } })
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <!--begin::Engage Widget 14-->
+                    <div class="card card-custom wave wave-animate wave-success mb-8 mb-lg-0 card-stretch gutter-b">
+                        <div class="card-body p-15 pb-20">
+                            <div class="row mb-17">
+                                <div class="col-xxl-5 mb-11 mb-xxl-0">
+                                    <!--begin::Image-->
+                                    <div class="card card-custom card-stretch">
+                                        <div class="card-body p-0 rounded px-10 py-15 d-flex align-items-center justify-content-center" style="background-color: #fff;">
+                                            @if (Model.resim == null || Model.resim == "")
+                                            {
+
+                                                <img src="~/assets/img/gorselYok.png" class="mw-100 w-200px" style="transform: scale(1.3);">
+                                            }
+                                            else
+                                            {
+
+                                                <img src="@Html.DisplayFor(model => model.resim)" class="mw-100 w-200px" style="transform: scale(1.3);">
+                                            }
+                                        </div>
+                                    </div>
+                                    <!--end::Image-->
+                                </div>
+                                <div class="col-xxl-7 pl-xxl-11">
+                                    <h2 class="font-weight-bolder text-dark mb-7" style="font-size: 32px;">  @Html.DisplayFor(model => model.baslik)</h2>
+                                    <h4>@Html.DisplayFor(model => model.mail)</h4>
+                                    <div class="font-size-h2 mb-7 text-dark-50">
+                                        <span class="text-info font-weight-boldest ml-2">
+                                            @Html.DisplayFor(model => model.satisFiyat) ₺<br />
+                                            <span class="label label-inline label-md label-info">PanoHas :@Html.DisplayFor(model => model.panoHas)₺</span>
+                                            <span class="label label-inline label-md label-info">Milyen :@Html.DisplayFor(model => model.milyem)₺</span>
+                                            <span class="label label-inline label-md label-info">Komisyon :@Html.DisplayFor(model => model.komisyon)₺</span>
+                                            <span class="label label-inline label-md label-info">Gün :@Html.DisplayFor(model => model.gun)₺</span>
+                                            <span class="label label-inline label-md label-info">Gram :@Html.DisplayFor(model => model.gram)₺</span>
+                                            <span class="label label-inline label-md label-info">Yüzde :@Html.DisplayFor(model => model.yuzde)%</span>
+                                        </span>
+                                    </div>
+                                    <div class="line-height-xl">
+                                        @Html.Raw(Model.aciklama)
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-6">
+                                <!--begin::Info-->
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Brand</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.brand)</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Ayar Adı</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.ayarAdi)</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Liste Fiyatı</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.listeFiyat) ₺</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Cinsiyet</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.cinsiyet)</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Kategori</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.kategori)</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Stok</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.adet)</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Stok Kodu</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.stokKodu)</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Kargo</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.kargo)</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="mb-8 d-flex flex-column">
+                                        <span class="text-dark font-weight-bold mb-4">Kdv</span>
+                                        <span class="text-muted font-weight-bolder font-size-lg">@Html.DisplayFor(model => model.kdv)</span>
+                                    </div>
+                                </div>
+                                <!--end::Info-->
+                            </div>
+                            <!--begin::Buttons-->
+                            <!--end::Buttons-->
+                        </div>
+                    </div>
+                    <div class="d-flex">
+
+                        <p class="alert text-center alert-primary float-right font-weight-bolder w-100 px-8 font-size-sm">
+                            Son Güncelleme Tarihi : @Html.DisplayFor(model => model.upTarih)
+                        </p>
+                    </div>
+                    <!--end::Engage Widget 14-->
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    }
+</div>
+
+<style>
+    #btnBarkodLogo {
+        display: flex;
+        position: absolute;
+        top: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+        #btnBarkodLogo p {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+    #btnGeri {
+        position: absolute;
+        top: 0;
+        margin-top: 8px;
+        left: 0;
+        left: 14px;
+    }
+
+    #btnDuzenle {
+        position: absolute;
+        top: 0;
+        margin-top: 8px;
+        right: 0;
+        margin-right: 14px;
+    }
+</style>
+
+<script>
+    //fetch('http://localhost:44308/api/urunbilgi')
+    //    .then(resp => res.json())
+    //    .then(response => {
+    //        console.log(response)
+    //    })
+    //    .catch(err => {
+    //        console.log(err.message)
+    //    })
+</script>
+
+<div class="modal fade" id="HepsiburadaDetailGuncelle">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title center-block" id="modalTitle">Hepsi Burada Ürün Düzenle</h3>
+            </div>
+            <div class="modal-body">
+
+                <form method="post">
+                    @Html.HiddenFor(model => model.otosay)
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="text-dark-50">İ Tarih</label>
+                                @Html.EditorFor(model => model.itarih, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Silme</label>
+                                @Html.EditorFor(model => model.silme, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Ayar Adı</label>
+                                @Html.EditorFor(model => model.ayarAdi, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Ayar</label>
+                                @Html.EditorFor(model => model.ayar, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="text-dark-50">Açıklama</label>
+                                @Html.TextAreaFor(model => model.aciklama, new { @class = "form-control w-100", @style = "height:150px" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Barkod</label>
+                                @Html.EditorFor(model => model.barkod, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Brand</label>
+                                @Html.EditorFor(model => model.brand, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Kargo</label>
+                                @Html.EditorFor(model => model.kargo, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Cinsiyet</label>
+                                @Html.EditorFor(model => model.cinsiyet, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Resim</label>
+                                @Html.EditorFor(model => model.resim, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Liste Fiyatı</label>
+                                @Html.EditorFor(model => model.listeFiyat, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Satış Fiyatı</label>
+                                @Html.EditorFor(model => model.satisFiyat, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Kategori</label>
+                                @Html.EditorFor(model => model.kategori, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Stok</label>
+                                @Html.EditorFor(model => model.adet, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Stok Kodu</label>
+                                @Html.EditorFor(model => model.stokKodu, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Baslik</label>
+                                @Html.EditorFor(model => model.baslik, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Kategori ID</label>
+                                @Html.EditorFor(model => model.categoryId, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="text-dark-50">H.Burada SKU</label>
+                                @Html.EditorFor(model => model.HepsiburadaSku, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="text-dark-50">Kdv</label>
+                                @Html.EditorFor(model => model.kdv, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-2">
+                                <label class="text-dark-50">Mail</label>
+                                @Html.EditorFor(model => model.mail, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-2">
+                                <label class="text-dark-50">Durum</label>
+                                @Html.EditorFor(model => model.durum, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-2">
+                                <label class="text-dark-50">Up Tarih</label>
+                                @Html.EditorFor(model => model.upTarih, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-2">
+                                <label class="text-dark-50">Up Fiyat Tarih</label>
+                                @Html.EditorFor(model => model.upFiyatTarih, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Milyem</label>
+                                @Html.EditorFor(model => model.milyem, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-dark-50">Komisyon</label>
+                                @Html.EditorFor(model => model.komisyon, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-info" data-dismiss="modal">İptal</a>
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </form>
+
+            </div>
+         
+        </div>
+    </div>
+
+</div>

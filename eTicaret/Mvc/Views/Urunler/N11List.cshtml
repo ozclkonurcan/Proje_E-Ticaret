@@ -1,0 +1,857 @@
+﻿@model IEnumerable<Mvc.Models.mvcN11Model>
+
+@{
+    ViewBag.Title = "N11List";
+}
+
+<style>
+    #headerTitle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 50px;
+        background-color: #ad9c65;
+        color: #fff;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    .tableSearchHeader {
+        position: relative;
+    }
+
+    .tableSearch {
+        display: flex;
+        justify-content: end;
+    }
+
+    .tablePageNumber {
+        display: flex;
+        justify-content: start;
+    }
+
+    .dataTables_wrapper {
+    }
+
+        .dataTables_wrapper .dataTables_filter {
+        }
+
+
+        .dataTables_wrapper .dataTables_length {
+        }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 500px;
+        height: 45px;
+    }
+
+    #n11Table_length select {
+        height: 45px;
+    }
+</style>
+<div class="w-100 d-flex justify-content-center">
+    <span id="headerTitle" class="label p-7 font-weight-bold label-xl  label-inline mr-2">N11</span>
+</div>
+
+@*<a href="/urunler/N11AddOrEdit" class="btn btn-light-primary pulse pulse-primary mr-2 float-right font-weight-bold mr-2">
+
+        <i class="fa fa-plus"></i>
+
+        Yeni Ürün Ekle
+    </a>*@
+<a data-toggle="modal" data-target="#N11AddInfo" class="btn btn-light-success pulse pulse-success mr-2 float-right font-weight-bold mr-2">
+
+    <i class="fa fa-plus"></i>
+
+    Yeni Ürün Ekle
+</a>
+<!--SMurunlerRemove Btn-->
+<div class="modal fade" id="N11RemoveInfo">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">N11 Remove</h2>
+            </div>
+            <div class="modal-body">
+
+                <form id="n11Form">
+                    <label>Silmek İstediğine Eminmisin ?</label>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">İptal</button>
+
+                <input type="submit" value="Sil" id="N11ModalSil" class="btn btn-danger" data-bs-dismiss="modal" />
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<input id="N11RemoveID" type="hidden" />
+<!--SMurunlerRemove Btn-->
+<table class="table table-head-bg table-head-borderless table-vertical-center" id="n11Table">
+    <thead>
+        <tr>
+            <th hidden>
+                KTarih
+            </th>
+            <th hidden>
+                Durum
+            </th>
+            <th>
+                Ürün Adı
+            </th>
+            <th hidden>
+                Ayar
+            </th>
+            <th hidden>
+                Ürün Adı
+            </th>
+            <th hidden>
+                Gram
+            </th>
+            <th hidden>
+                Product Seller Code
+            </th>
+            <th hidden>
+                Title
+            </th>
+            <th hidden>
+                Subtitle
+            </th>
+            <th hidden>
+                Description
+            </th>
+            <th>
+                Stok
+            </th>
+            <th>
+                Ayar Adı
+            </th>
+            <th>
+                Idx
+            </th>
+            <th>
+                PanoHas
+            </th>
+            <th>
+                Gram
+            </th>
+            <th>
+                Milyem
+            </th>
+            <th>
+                Gün
+            </th>
+            <th>
+                Komisyon
+            </th>
+            <th>
+                Yüzde
+            </th>
+            <th>
+                Fiyat
+            </th>
+            <th hidden>
+                Currency Type
+            </th>
+            <th hidden>
+                Resim
+            </th>
+            <th hidden>
+                SaleStartDate
+            </th>
+            <th hidden>
+                SaleEndDate
+            </th>
+            <th hidden>
+                ProductionDate
+            </th>
+            <th hidden>
+                Expiration Date
+            </th>
+            <th hidden>
+                Shipment Template
+            </th>
+            <th hidden>
+                Seller Stock Code
+            </th>
+            <th hidden>
+                Attribute Name)
+            </th>
+            <th hidden>
+                Attribute Value
+            </th>
+            <th hidden>
+                Option Price
+            </th>
+            <th hidden>
+                Bundle
+            </th>
+            <th hidden>
+                Mpn
+            </th>
+            <th hidden>
+                Gtin
+            </th>
+            <th hidden>
+                Special Product Inf Key
+            </th>
+            <th hidden>
+                Special Product Inf Value
+            </th>
+            <th hidden>
+                Up Fiyat Tarih
+            </th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.durum == true)
+            {
+        <tr>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.ktarih)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.durum)
+            </td>
+            <td class="shorting_1 dtr-control text-left" style="width:200px;">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-50 flex-shrink-0">
+
+                        @if (item.resim == null || item.resim == "")
+                        {
+                            <div class="symbol-label bgi-size-cover" style="background-image:url('../../assets/img/gorselYok.png')">
+
+                            </div>
+                        }
+                        else
+                        {
+
+                            <div class="symbol-label bgi-size-cover" style="background-image:url(@Html.DisplayFor(modelItem => item.resim))">
+
+                            </div>
+                        }
+
+
+                    </div>
+                    <div class="ml-3">
+                        <span class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">
+                            @Html.DisplayFor(modelItem => item.barkod, new { @class = "label-light-success label-inline" })
+                        </span>
+
+                        @Html.DisplayFor(modelItem => item.urunadi)
+                    </div>
+                </div>
+
+
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.ayar)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.urunadi)
+
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.gram)
+            </td>
+            <td >
+                @Html.DisplayFor(modelItem => item.adet)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.productSellerCode)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.subtitle)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @if (item.attribute == "" || item.attribute == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.attribute)
+                }
+            </td>
+            <td>
+                @if (item.idx == "" || item.idx == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.idx)
+                }
+            </td>
+            <td>
+                @if (item.panoHas == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.panoHas)
+                }
+            </td>
+            <td>
+                @if (item.gram == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.gram)
+                }
+            </td>
+            <td>
+                @if (item.milyem == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.milyem)
+                }
+            </td>
+            <td>
+                @if (item.gun == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.gun)
+                }
+            </td>
+            <td>
+                @if (item.komisyon == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.komisyon)
+                }
+            </td>
+            <td>
+                @if (item.yuzde == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.yuzde)
+                }
+            </td>
+            <td>
+                @if (item.price == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.price)
+                }
+            </td>
+
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.currencyType)
+            </td>
+            <td hidden>
+                <img src="@Html.DisplayFor(modelItem => item.resim)" style="width:40px;height:40px" />
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.saleStartDate)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.saleEndDate)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.productionDate)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.expirationDate)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.shipmentTemplate)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.sellerStockCode)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.attribute_name)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.attribute_value)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.optionPrice)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.bundle)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.mpn)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.gtin)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.specialProductInf_key)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.specialProductInf_value)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.upFiyatTarih)
+            </td>
+            <td>
+                @*<a href="@Url.Action("N11AddOrEdit","urunler",new {id= item.Id })" class="btn btn-sm btn-icon btn-light-primary pulse pulse-primary mr-0">
+                <i class="fa fa-cog"></i>
+                <span class="pulse-ring"></span>
+            </a>*@
+                @*<a href="#" onclick="N11AddOrEdit(@item.Id)" class="btn btn-sm  btn-icon btn-light-primary pulse pulse-primary mr-2">
+                <i class="fa fa-cog"></i>
+                <span class="pulse-ring"></span>
+            </a>*@
+
+
+                @*@Html.ActionLink("Detay", "CicekSepetiDetay", new { id = item.otosay }, new
+            {
+                @class = "btn btn-info",
+                @data_toggle = "modal",
+                @data_target = "#exampleModalLong"
+            })*@
+
+                <a href="@Url.Action("N11Details","urunler",new {id= item.Id })" class="btn btn-sm btn-icon btn-light-info pulse pulse-info mr-0">
+                    <i class="fa fa-info"></i>
+                    <span class="pulse-ring"></span>
+                </a>
+
+
+                @*<a href="@Url.Action("N11Remove","urunler",new {id= item.Id })" id="cicekRemove" class="btn btn-sm btn-icon btn-light-danger pulse pulse-danger mr-0">
+                <i class="fa fa-trash"></i>
+                <span class="pulse-ring"></span>
+            </a>*@
+                <a id="N11RemoveInfo" onclick="Rem(@item.Id)" class="btn btn-sm btn-icon btn-light-danger pulse pulse-danger mr-2">
+                    <i class="fa fa-trash"></i>
+                    <span class="pulse-ring"></span>
+                </a>
+
+
+                @*<a href="#" id="showModal" class="btn btn-danger" onclick="Remove(@item.otosay)">Sil</a>*@
+
+
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+
+</table>
+
+<script>
+
+
+    var Rem = function (_id) {
+
+
+        Swal.fire({
+            title: 'Uyarı !!!',
+            text: "Silmek istediğine emin misin ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sil',
+            cancelButtonText: 'İptal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Urunler/N11Remove",
+                    data: { id: _id },
+                    success: function (result) {
+                        if (result) {
+                           
+                            $('#N11RemoveID').val(null);
+                            window.location.href = "/urunler/n11list";
+
+                        }
+                        else {
+                            alertify.error("Hata oluştu silme işlemi sırasında");
+                        }
+                    }
+                });
+            }
+        })
+
+    };
+
+
+    $(document).ready(function () {
+        //Add
+        $("#N11Modal_btnAdd").click(function () {
+            var DataForm = $("#N11AddForm").serialize();
+            var barkodKont = $("#barkodKontrol").val();
+            if (barkodKont == null || barkodKont == "") {
+
+                toastr.warning("Barkod numarası girmeden ekleme işlemi yapamazsın !!!");
+            } else {
+                $.ajax({
+                    type: "POST",
+                    //url: "/Urunler/N11Details",
+                    url:"http://localhost:44308/api/n11_urunler",
+                    data: DataForm,
+                    success: function () {
+                        toastr.success("Ekleme işlemi gerçekleşti")
+                        window.location.href = "/urunler/n11list";
+
+                    },
+                    error: function () {
+                        toastr.info("Barkod numarası kullanılmaktadır.");
+                    }
+                });
+            }
+        });
+        $('#n11Table').DataTable({
+            "dom": "<'row tableSearchHeader'<'tableSearch col-lg-10 col-md-10 col-xs-12'f><'tablePageNumber col-lg-2 col-md-2 col-xs-12'l>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Arama...",
+                lengthMenu: " _MENU_ ",
+                zeroRecords: "Kayıt bulunamadı",
+                info: "Gösterilen Sayfa : _PAGE_ Sayfalar : _PAGES_",
+                infoEmpty: "Kayıt yok",
+                infoFiltered: "(Toplam _MAX_ kayıttan filtrelendi)"
+            },
+            columnDefs: [{ orderable: false, targets: [1, 14, 8,36] }],
+        });
+    });
+
+     var N11AddOrEdit = function (Id) {
+        $('#N11AddOrEditID').val(Id);
+        var url = '@Url.Action("N11AddOrEdit", "Urunler")/' + Id;
+            $.get(url, function (data) {
+                $('#myModal').html(data);
+                $('#myModal').modal('show');
+            })
+    }
+
+
+    var Confirm = function (Id) {
+        $('#N11RemoveID').val(Id);
+        $('#N11RemoveInfo').modal('show');
+    }
+
+
+    $(document).ready(function () {
+        $('#N11ModalSil').click(function () {
+            var _id = $('#N11RemoveID').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/Urunler/N11Remove",
+                data: { id: _id },
+                success: function (result) {
+                    if (result) {
+                        Swal.fire({
+                            title: "Silindi",
+                            text: "Dosya başarıyla silindi",
+                            icon: "success",
+                            buttonsStyling: false,
+                            showConfirmButton: false
+                        });
+                        $('#N11RemoveInfo').modal('hide');
+                        $('#N11RemoveID').val(null);
+                        window.location.href = "/urunler/n11list";
+
+                    }
+                    else {
+                        alertify.error("Hata oluştu silme işlemi sırasında");
+                    }
+                }
+            });
+        });
+    })
+</script>
+
+<!--SMurunlerRemove Btn-->
+<div class="modal fade" id="SM_UrunlerRemoveInfo">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">SM Urunler Remove</h2>
+            </div>
+            <div class="modal-body">
+
+                <form id="smUrunlerForm">
+                    <label>Silmek İstediğine Eminmisin ?</label>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">İptal</button>
+
+                <input type="submit" value="Sil" id="SmUrunlerModalSil" class="btn btn-danger" data-bs-dismiss="modal" />
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--SMurunlerRemove Btn-->
+<!--SMurunlerRemove Btn-->
+<!--Update Modal-->
+@*<button type="button" class="btn btn-secondary" id="#">Modal</button>*@
+<div class="modal" id="myModal"> </div>
+<!--Update Modal-->
+<input type="hidden" id="N11AddOrEditID" />
+
+@*</div>*@
+<!--GET ID-->
+<input type="hidden" id="SM_UrunlerRemoveID" />
+<!--GET ID-->
+<!-- SM URUNLER Add-->
+<!--BTN-->
+@*<button class="btn btn-light-primary" data-toggle="modal" data-target="#SM_UrunlerAddInfo">Modal add</button>*@
+<!--BTN-->
+<div class="modal fade" id="N11AddInfo">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title center-block" id="modalTitle">N11 Ürün Ekle</h3>
+            </div>
+            <div class="modal-body">
+
+                <form id="N11AddForm" method="post" action="/urunler/N11Details">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="ktarih" class="form-control" placeholder="K Tarih" />
+                            </div>
+                            <div class="col-md-3">
+                                <select name="durum" class="form-control">
+                                    <option selected>Durum İşlem</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input name="barkod" id="barkodKontrol" class="form-control" placeholder="Barkod" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="ayar" class="form-control" placeholder="Ayar" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input name="description" class="form-control" placeholder="Açıklama" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="urunadi" class="form-control" placeholder="Ürün Adı" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="gram" class="form-control" placeholder="Gram" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="n11Id" class="form-control" placeholder="N11 ID" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="productSellerCode" class="form-control" placeholder="Product Seller Code" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="title" class="form-control" placeholder="Title" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="subtitle" class="form-control" placeholder="Subtitle" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="attribute" class="form-control" placeholder="Attribute" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="idx" class="form-control" placeholder="IDX" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="price" class="form-control" placeholder="Price" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="currencyType" class="form-control" placeholder="Currency Type" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="image" class="form-control" placeholder="İmage" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="image_order" class="form-control" placeholder="İmage Order" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="saleStartDate" class="form-control" placeholder="Sale Start Date" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="saleEndDate" class="form-control" placeholder="Sale End Date" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="productionDate" class="form-control" placeholder="Production Date" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="expirationDate" class="form-control" placeholder="Expiration Date" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="productCondition" class="form-control" placeholder="Product Condition" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="preparingDay" class="form-control" placeholder="Preparing Day" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="discount" class="form-control" placeholder="Discount" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="shipmentTemplate" class="form-control" placeholder="Shipment Template" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="adet" class="form-control" placeholder="Adet" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="sellerStockCode" class="form-control" placeholder="Seller Stock Code" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="attribute_name" class="form-control" placeholder="Attribute Name" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="attribute_value" class="form-control" placeholder="Attribute Value" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input class="form-control" name="optionPrice" placeholder="Option Price" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <input name="bundle" class="form-control" placeholder="Bundle" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="mpn" class="form-control" placeholder="Mpn" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="gtin" class="form-control" placeholder="Gtin" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="specialProductInf_key" class="form-control" placeholder="Special Product Inf Key" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="specialProductInf_value" class="form-control" placeholder="Special Product Inf Value" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="upFiyatTarih" class="form-control" placeholder="Up Fiyat Tarih" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="panoHas" class="form-control" placeholder="panoHas" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input name="milyem" class="form-control" placeholder="Milyem" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="yuzde" class="form-control" placeholder="Yüzde" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="komisyon" class="form-control" placeholder="Komisyon" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="gun" class="form-control" placeholder="Gün" />
+                            </div>
+                        </div>
+                    </div>
+                 
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-info" data-dismiss="modal">İptal</a>
+
+                <button type="submit" id="N11Modal_btnAdd" class="btn btn-success">Ekle</button>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SM URUNLER Add-->

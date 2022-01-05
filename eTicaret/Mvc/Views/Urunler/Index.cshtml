@@ -1,0 +1,861 @@
+﻿
+
+@model  List<Mvc.Models.mvcSmModel>
+
+@{
+    ViewBag.Title = "Urunler Sayfası";
+    var smUrunler = ViewBag.model as Mvc.Models.mvcSmModel;
+
+
+
+}
+<style>
+    #headerTitle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 50px;
+        background-color: #ad9c65;
+        color: #fff;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    .tableSearchHeader {
+        position: relative;
+        display: flex;
+        justify-content: end;
+    }
+
+    .tableSearch {
+        display: flex;
+        justify-content: end;
+    }
+
+    .tablePageNumber {
+        display: flex;
+        justify-content: start;
+    }
+
+    .dataTables_wrapper {
+    }
+
+        .dataTables_wrapper .dataTables_filter {
+        }
+
+
+        .dataTables_wrapper .dataTables_length {
+        }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 500px;
+        height: 45px;
+    }
+
+    #sm_urunlerTable_length select {
+        height: 45px;
+    }
+</style>
+<div class="w-100 d-flex justify-content-center">
+    <span id="headerTitle" class="label p-7 font-weight-bold label-xl  label-inline mr-2">Sanal Mağaza</span>
+</div>
+
+<a data-toggle="modal" data-target="#SM_UrunlerAddInfo" class="btn btn-light-success pulse pulse-success mr-2 float-right font-weight-bold mr-2">
+
+    <i class="fa fa-plus"></i>
+
+    Yeni Ürün Ekle
+</a>
+
+@*<form class="mt-20" method="post" id="smTopluUpdate" action="/urunler/TopluUpdate">
+        @Html.TextBoxFor(m => smUrunler.panoHas)
+        <button type="submit" id="SmAllUpdatebtnAdd" class="btn btn-success">TopluUp</button>
+    </form>*@
+<!--<div class="ribbon ribbon-clip ribbon-right">
+    <div class="ribbon-target" style="top: -50px; height: 40px; right:65px">
+        <span class="btn btn-primary ribbon-inner " style="width:125px;">-->
+@*<a href="/urunler/SM_UrunlerAddOrEdit" class="btn  mr-2 float-right font-weight-bold mr-2">
+        <i class="fa fa-plus"></i>
+        Ürün Ekle
+    </a>*@
+<!--<a data-toggle="modal" data-target="#SM_UrunlerAddInfo" class="btn  mr-2 float-right font-weight-bold mr-2">
+            <i class="fa fa-plus"></i>
+            Ürün Ekle
+        </a>
+
+    </span>
+</div>-->
+<!-- SM URUNLER Add-->
+<!--BTN-->
+@*<button class="btn btn-light-primary" data-toggle="modal" data-target="#SM_UrunlerAddInfo">Modal add</button>*@
+<!--BTN-->
+<div class="modal fade" id="SM_UrunlerAddInfo">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title center-block" id="modalTitle">SM Ürün Ekle</h3>
+                <hr />
+
+            </div>
+            <div class="modal-body">
+
+                <form id="smUrunlerAddForm" method="post" action="/urunler/SM_UrunlerAddOrEdit">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input name="urunAdi" class="form-control" placeholder="Ürün Adı" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="marka" class="form-control" placeholder="Marka" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="barkod" id="barkodKontrol" class="form-control" placeholder="Barkod" required />
+                            </div>
+                            <div class="col-md-2">
+                                <input name="stok" class="form-control" placeholder="Stok" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea style="height:150px" name="aciklama" class="form-control" placeholder="Açıklama"> </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <input name="desi" class="form-control" placeholder="Desi" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="kdv" class="form-control" placeholder="Kdv" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="model" class="form-control" placeholder="Model" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="maliyet" class="form-control" placeholder="Maliyet" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="resim" class="form-control" placeholder="Resim" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="sonFiyat" class="form-control" placeholder="Son Fiyat" />
+                            </div>
+                            <div class="col-md-3">
+                                <select name="durum" class="form-control">
+                                    <option selected>Durum İşlem</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input name="upFiyatTarih" class="form-control" placeholder="Up Fiyat Tarih" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="panoHas" class="form-control" placeholder="PanoHas" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="milyem" class="form-control" placeholder="Milyem" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="gram" class="form-control" placeholder="Gram" />
+                            </div>
+                            <div class="col-md-3">
+                                <input name="komisyon" class="form-control" placeholder="Komisyon" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="gun" class="form-control" placeholder="Gün" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="yuzde" class="form-control" placeholder="Yüzde" />
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-info" data-dismiss="modal">İptal</a>
+
+
+                <button type="submit" id="SmUrunlerModal_btnAdd" class="btn btn-success">Ekle</button>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SM URUNLER Add-->
+<!-- SM URUNLER EDİT-->
+<div class="modal fade" id="SM_UrunlerEditInfo">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+
+                <form id="smUrunlerEditForm">
+                    <label>Güncelleme Sayfası</label>
+
+
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">İptal</button>
+
+                <button type="submit" id="SmUrunlerModalEdit" class="btn btn-success" data-bs-dismiss="modal">Güncelle</button>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SM URUNLER edit-->
+<!--SMurunlerRemove Btn-->
+<div class="modal fade" id="SM_UrunlerRemoveInfo">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">SM Urunler Sil</h2>
+            </div>
+            <div class="modal-body">
+
+                <form id="smUrunlerForm">
+                    <label>Silmek İstediğine Eminmisin ?</label>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">İptal</button>
+
+
+                <input type="submit" value="Sil" id="SmUrunlerModalSil" class="btn btn-danger" data-bs-dismiss="modal" />
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--SMurunlerRemove Btn-->
+<!--Update Modal-->
+@*<button type="button" class="btn btn-secondary" id="#">Modal</button>*@
+<div class="modal" id="myModal"> </div>
+<!--Update Modal-->
+<input type="hidden" id="Sm_btnAddOrEditID" />
+
+@*</div>*@
+<!--GET ID-->
+<input type="hidden" id="SM_UrunlerRemoveID" />
+<!--GET ID-->
+
+<table id="sm_urunlerTable" class="table table-head-bg table-head-borderless table-vertical-center">
+    <thead>
+        <tr>
+            <th hidden>
+                ID
+            </th>
+            <th>
+                Ürün Adı
+            </th>
+            <th hidden>
+                Açıklama
+            </th>
+            <th hidden>
+                Marka
+            </th>
+            <th hidden>
+                Barkod
+            </th>
+
+            <th hidden>
+                Desi
+            </th>
+            <th hidden>
+                Kdv
+            </th>
+            <th hidden>
+                Resim
+            </th>
+            <th>
+                Gün
+            </th>
+            <th>
+                Yüzde
+            </th>
+            <th>
+                Komisyon
+            </th>
+            <th>
+                Stok
+            </th>
+            <th>
+                Gram
+            </th>
+            <th>
+                Milyem
+            </th>
+            <th>
+                PanoHas
+            </th>
+
+            <th hidden>
+                Model
+            </th>
+            <th hidden>
+                Maliyet
+            </th>
+            <th>
+                Son Fiyat
+            </th>
+            <th hidden>
+                Durum
+            </th>
+            <th hidden>
+                Up Fiyat Tarih
+            </th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.durum == true)
+            {
+        <tr class="text-center">
+            <td hidden>
+
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td class="shorting_1 dtr-control text-left" style="width:200px;">
+                <div class="d-flex align-items-center">
+                    <div class="symbol symbol-50 flex-shrink-0">
+                        @if (item.resim == null || item.resim == "")
+                        {
+                            <div class="symbol-label bgi-size-cover" style="background-image:url('../../assets/img/gorselYok.png')">
+
+                            </div>
+                        }
+                        else
+                        {
+
+                            <div class="symbol-label bgi-size-cover" style="background-image:url(@Html.DisplayFor(modelItem => item.resim))">
+
+                            </div>
+                        }
+                    </div>
+                    <div class="ml-3">
+                        <span class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">
+                            @Html.DisplayFor(modelItem => item.barkod, new { @class = "label-light-success label-inline" })
+                        </span>
+
+                        @Html.DisplayFor(modelItem => item.urunAdi)
+                    </div>
+                </div>
+
+
+            </td>
+
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.aciklama)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.marka)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.barkod)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.desi)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.kdv)
+            </td>
+            <td hidden>
+                <img src="@Html.DisplayFor(modelItem => item.resim)" style="width:40px;height:40px" />
+            </td>
+            <td>
+                @if (item.gun == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.gun)
+                }
+            </td>
+            <td>
+                @if (item.yuzde == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.yuzde)
+                }
+            </td>
+            <td>
+                @if (item.komisyon == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.komisyon)
+                }
+            </td>
+            <td>
+                @if (item.adet == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.adet)
+                }
+            </td>
+            <td>
+                @if (item.gram == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.gram)
+                }
+            </td>
+            <td>
+                @if (item.milyem == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.milyem)
+                }
+            </td>
+            <td>
+                @if (item.panoHas == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.panoHas)
+                }
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.model)
+            </td>
+            <td hidden>
+                @if (item.maliyet == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.maliyet)
+                }
+            </td>
+            <td>
+                @if (item.sonFiyat == null)
+                {
+                    <span class="label font-weight-bold label-lg label-light-danger label-inline">Boş</span>
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.sonFiyat)
+                }
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.durum)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.upFiyatTarih)
+            </td>
+            <td>
+                @*<a href="@Url.Action("SM_UrunlerAddOrEdit","urunler",new {id= item.Id })" class="btn btn-sm btn-icon btn-light-primary pulse pulse-primary mr-2">
+                <i class="fa fa-cog"></i>
+                <span class="pulse-ring"></span>
+            </a>*@
+
+                @*<button type="button" onclick="Sm_btnAddOrEdit(@item.Id)" class="btn btn-sm  btn-icon btn-light-primary pulse pulse-primary mr-2">
+                <i class="fa fa-cog"></i>
+                <span class="pulse-ring"></span>
+            </button>*@
+
+                <a href="@Url.Action("SM_UrunlerAddOrEdit","urunler",new {id= item.Id })" class="btn btn-sm  btn-icon btn-light-info pulse pulse-info mr-2">
+                    <i class="fa fa-info"></i>
+                    <span class="pulse-ring"></span>
+                </a>
+
+
+
+                <a id="SM_UrunlerRemoveInfo" onclick="Rem(@item.Id)" class="btn btn-sm btn-icon btn-light-danger pulse pulse-danger mr-2">
+                    <i class="fa fa-trash"></i>
+                    <span class="pulse-ring"></span>
+                </a>
+
+
+                @*<a href="#" id="showModal" class="btn btn-danger" onclick="Remove(@item.otosay)">Sil</a>*@
+
+
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+<script>
+
+
+
+
+    var Rem = function (_id) {
+
+
+        Swal.fire({
+            title: 'Uyarı !!!',
+            text: "Silmek istediğine emin misin ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sil',
+            cancelButtonText: 'İptal',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Urunler/SM_UrunlerRemove",
+                    data: { id: _id },
+                    success: function (result) {
+                        if (result) {
+                            toastr.success("Silme işlemi başarılı.");
+                            $('#SM_UrunlerRemoveID').val(null);
+
+                            window.location.href = "/urunler";
+
+                        }
+                        else {
+                            alertify.error("Hata oluştu silme işlemi sırasında");
+                        }
+                    }
+                });
+            }
+        })
+
+    };
+
+
+
+
+    //$(document).ready(function () {
+    //    $('#SmUrunlerModalSil').click(function () {
+    //        var _id = $('#SM_UrunlerRemoveID').val();
+
+    //        $.ajax({
+    //            type: "POST",
+    //            url: "/Urunler/SM_UrunlerRemove",
+    //            data: { id: _id },
+    //            success: function (result) {
+    //                if (result) {
+    //                    Swal.fire({
+    //                        title: "Silindi",
+    //                        text: "Dosya başarıyla silindi",
+    //                        icon: "success",
+    //                        buttonsStyling: false,
+    //                        showConfirmButton: false
+    //                    });
+    //                    $('#SM_UrunlerRemoveInfo').modal('hide');
+    //                    $('#SM_UrunlerRemoveID').val(null);
+    //                    window.location.href = "/urunler";
+
+    //                }
+    //                else {
+    //                    alertify.error("Hata oluştu silme işlemi sırasında");
+    //                }
+    //            }
+    //        });
+    //    });
+    //})
+
+
+
+    var Sm_btnAddOrEdit = function (Id) {
+        $('#Sm_btnAddOrEditID').val(Id);
+        var url = '@Url.Action("SM_UrunlerAddOrEdit","Urunler")/' + Id;
+            $.get(url, function (data) {
+                $('#myModal').html(data);
+                $('#myModal').modal('show');
+            })
+    }
+
+
+
+
+
+
+    $(document).ready(function () {
+
+        ////Toplu Update
+        //$("#SmAllUpdatebtnAdd").click(function () {
+        //    var DataForm = $("#smTopluUpdate").serialize();
+
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/Urunler/TopluUpdate",
+        //        data: DataForm,
+        //        success: function () {
+        //            alertify.success("Toplu Güncelleme gerçekleşti");
+        //            window.location.href = "/urunler";
+
+        //        }
+        //    });
+        //});
+        ////TopluUpdate
+            //Add
+            $("#SmUrunlerModal_btnAdd").click(function () {
+                var DataForm = $("#smUrunlerAddForm").serialize();
+
+                var barkodKont = $("#barkodKontrol").val();
+                var barkod = $("#barkod").val();
+
+
+                if (barkodKont == null || barkodKont == "") {
+
+                    toastr.warning("Barkod numarası girmeden ekleme işlemi yapamazsın !!!");
+                }
+                else {
+
+
+
+                    $.ajax({
+                        //url: "/Urunler/SM_UrunlerAddOrEdit",
+                        url:"http://localhost:44308/api/sm_urunler",
+                        type: "POST",
+                        data: DataForm,
+                        success: function () {
+                                toastr.success("Ekleme işlemi gerçekleşti");
+                                window.location.href = "/urunler";
+                        },
+                        error: function () {
+                            toastr.info("Barkod numarası kullanılmaktadır.");
+                        }
+                    });
+                }
+            });
+
+
+        var table = $('#sm_urunlerTable').DataTable({
+           /* "pageLength": 7,*/
+            "dom": "<'row tableSearchHeader'<'tableSearch col-lg-10 col-md-10 col-xs-12'f><'tablePageNumber  col-lg-2 col-md-2 col-xs-12'l>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Arama...",
+                lengthMenu: " _MENU_ ",
+                zeroRecords: "Kayıt bulunamadı",
+                info: "Gösterilen Sayfa : _PAGE_ Sayfalar : _PAGES_",
+                infoEmpty: "Kayıt yok",
+                infoFiltered: "(Toplam _MAX_ kayıttan filtrelendi)"
+            },
+            columnDefs: [{ orderable: false, targets: [20, 8] }],
+        });
+
+        $('#sm_urunlerTable').on('click', "tr", function () {
+            $(this).toggleClass('selected');
+        })
+
+
+
+
+
+    });
+
+
+    @*$(function () {
+        var SuccessMessage = '@TempData["SuccessMessage"]'
+        if (SuccessMessage != '')
+            alertify.success(SuccessMessage);
+    })*@
+
+    $('#SmUrunBtnModaliptal').click(function () {
+        window.location.href = "/urunler";
+    })
+
+
+
+
+    var Confirm = function (Id) {
+        $('#SM_UrunlerRemoveID').val(Id);
+        $('#SM_UrunlerRemoveInfo').modal('show');
+        }
+
+
+
+        //Edit
+
+        //var SmUrunEdit = function (Id) {
+
+        //    var url = "/urunler/SM_UrunlerAddOrEdit?Id=" + Id;
+        //    $("#modalTitle").html("SM Urunler Editssss")
+        //  //  $('#SM_UrunlerEditID').val(Id);
+        //    $('#SM_UrunlerEditInfo').modal('show');
+
+        //    $.ajax({
+        //        type: "GET",
+        //        url: url,
+        //        data: { barkod: barkod },
+        //        success: function (result) {
+        //            var obj = result;
+        //            $("#SM_UrunlerEditID").val(obj.Id);
+        //            $("#SM_UrunlerEditBarkod").val(obj.barkod);
+        //        }
+        //    })
+        //}
+
+
+</script>
+
+
+
+
+
+
+
+
+@*<div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => smUrunler.urunAdi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.LabelFor(model => smUrunler.urunAdi, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.ValidationMessageFor(model => smUrunler.urunAdi, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => smUrunler.marka, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => smUrunler.marka, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => smUrunler.marka, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => smUrunler.barkod, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => smUrunler.barkod, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => smUrunler.barkod, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => smUrunler.desi, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => smUrunler.desi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => smUrunler.desi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => smUrunler.aciklama, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.TextAreaFor(model => smUrunler.aciklama, new { htmlAttributes = new { @class = "form-control" }, @style = "width:100%", @id = "kt_autosize_2", @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => smUrunler.aciklama, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => smUrunler.kdv, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => smUrunler.kdv, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => smUrunler.kdv, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => smUrunler.resim, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => smUrunler.resim, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                @Html.ValidationMessageFor(model => smUrunler.resim, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => smUrunler.model, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => smUrunler.model, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => smUrunler.model, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => smUrunler.maliyet, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => smUrunler.maliyet, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => smUrunler.maliyet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => smUrunler.sonFiyat, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => smUrunler.sonFiyat, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => smUrunler.durum, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => smUrunler.durum, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => smUrunler.upFiyatTarih, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => smUrunler.upFiyatTarih, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>*@

@@ -1,0 +1,201 @@
+﻿@model Mvc.Models.mvcTrendyolModel
+
+@{
+    ViewBag.Title = "TrendAddOrEdit";
+}
+
+<h2>Trendyol Güncelleme</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.otosay)
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.itarih, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.itarih, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.itarih, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.silme, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.silme, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.silme, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.ayarAdi, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.ayarAdi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ayarAdi, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.barkod, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.barkod, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.barkod, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.aciklama, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.TextAreaFor(model => model.aciklama, new { htmlAttributes = new { @class = "form-control" }, @style = "width:100%", @id = "kt_autosize_2", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.aciklama, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.brand, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.brand, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.brand, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.kargo, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.kargo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kargo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.cinsiyet, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.cinsiyet, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cinsiyet, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.resim, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.resim, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.resim, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.listeFiyat, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.listeFiyat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.listeFiyat, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.satisFiyat, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.satisFiyat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.satisFiyat, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.kategori, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.kategori, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kategori, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.stok, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.stok, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.stok, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.stokKodu, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.stokKodu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.stokKodu, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.baslik, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.baslik, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.baslik, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.kdv, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.kdv, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kdv, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.mail, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.mail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.durum, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.durum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.durum, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.upTarih, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.upTarih, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.upTarih, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.upFiyatTarih, htmlAttributes: new { @class = "control-label col-md-12" })
+                @Html.EditorFor(model => model.upFiyatTarih, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.upFiyatTarih, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary"> Ekle </button>
+            <input type="reset" disabled value="Sıfırla" class="btn btn-danger" hidden />
+            <a href="#" class="btn btn-warning" data-dismiss="modal">İptal</a>
+        </div>
+    </div>
+</div>
+}
+
+<script>
+    // Class definition
+
+    var KTAutosize = function () {
+
+        // Private functions
+        var demos = function () {
+            // basic demo
+            var demo1 = $('#kt_autosize_1');
+            var demo2 = $('#kt_autosize_2');
+
+            autosize(demo1);
+
+            autosize(demo2);
+            autosize.update(demo2);
+        }
+
+        return {
+            // public functions
+            init: function () {
+                demos();
+            }
+        };
+    }();
+
+    jQuery(document).ready(function () {
+        KTAutosize.init();
+    });
+</script>
